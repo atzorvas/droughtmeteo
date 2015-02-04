@@ -1,0 +1,11 @@
+*.pyc 
+databases/*
+sessions/*
+errors/*
+cache/*
+uploads/*
+*.py[oc]
+static/temp
+static/charts/*
+progress.log
+models/0.py

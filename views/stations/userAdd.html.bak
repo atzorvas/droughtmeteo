@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+<script>$("#page-header-extra").append("<h3>Spi Calculatior</h3>");</script>
+{{if form is not None:}}
+{{=form}}
+
+{{pass}}
+
+{{if data:}}
+{{=LABEL(session.customchart_name)}}
+{{for i in [1,3,6,12]:}}
+<br>
+<a href="#" onClick="window.open('{{=URL('static', 'usercharts/' + station +'_SPI_'+str(i)+'month_'+str(auth.user.id if auth.user else 'ANON')+'.png')}}','mywindow','width=800,height=560')">SPI_{{=i}}month</a>
+<br>
+{{pass}}
+{{pass}}
+<script>$('#userfiles_userfile__row').append('<a href="#" onClick="window.open(\'{{=URL('static', 'images/sampleEmy.png')}}\',\'mywindow\',\'width=800,height=560\')">View Sample .csv File</a>')</script>

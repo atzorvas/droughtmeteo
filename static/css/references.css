@@ -1,0 +1,3 @@
+ol#ref {list-style-type: none;}
+ol#ref li:before {content: "[" counter(section) "] ";}
+ol#ref li { counter-increment: section;}

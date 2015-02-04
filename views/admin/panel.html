@@ -1,0 +1,21 @@
+{{extend 'layout.html'}}
+
+<h4>Statistics<small>  refresh page to see updated statistics.</small></h4>
+<strong>Stations:</strong> {{=db(db.stations).count()}}
+<strong>Users:</strong> {{=db(db.auth_user).count()}}
+
+<hr />
+<h4>Manage Stations</h4>
+{{=BUTTON("Add Station", _onclick="document.location='" + URL('stations','add') + "'") }}
+{{=BUTTON("View", _onclick="document.location='" + URL('stations','show') + "'") }}
+{{=BUTTON("Edit/Upload Emy File", _onclick="document.location='" + URL('stations','edit') + "'") }}
+
+<hr />
+<h4>Live Updates</h4>
+{{for item in items:}}
+{{=item}}
+{{pass}}
+
+<hr />
+<h4>Manage Accounts</h4>
+{{=BUTTON("List & Edit Users", _onclick="document.location='" + URL('admin','list_users') + "'") }}

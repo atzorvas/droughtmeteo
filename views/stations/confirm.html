@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+<script>$("#page-header-extra").append("<h3>Confirm Values for station</h3>");</script>
+{{=button}}
+{{form.element('input#stations_state')['_placeholder']="Enter Municipality"}}
+{{=form}}
+<script>$('#stations_emy_file__row').append('<a href="" onClick="window.open(\'{{=URL('static', 'images/sampleEmy.png')}}\',\'mywindow\',\'width=800,height=560\')">View Sample .csv File</a>')</script>
+<script>$('#stations_lat__row').append('<label for="label1">please if needed transcode using this example <strong>37° 47\' 00" N</strong></label>')</script>
+<script>$('#stations_long__row').append('<label for="label2">please if needed transcode using this example <strong>25° 22\' 00" E</strong></label>')</script>

@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<script>$("#page-header-extra").append("<h3>Drought Indices Chart</h3>");</script>
+{{=form}}
+{{if chart:}}
+{{=IMG(_src=URL('static', 'images/categories.png'))}}
+{{=chart}}
+{{pass}}

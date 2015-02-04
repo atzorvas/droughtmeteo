@@ -1,0 +1,109 @@
+{{extend 'layout.html'}}
+<script>$("#page-header-extra").append("<h3>Welcome</h3>");</script>
+<link rel="stylesheet" href="{{=URL('static', 'css/ticker.css')}}"/>
+<link href={{=URL('static', 'css/ticker-style.css')}} rel="stylesheet" type="text/css" />
+<script src={{=URL('static', 'js/jquery.ticker.js')}} type="text/javascript"></script>
+
+<div class="container">
+    <div class="row span12" style="margin:0px;">
+        <ul id="js-news" class="js-hidden">
+            {{stations=db(db.stations).select()}}
+            {{if len(stations)>0:}}
+            {{for item, station in zip(currentValues,stations):}}
+            <li>{{=A(station.city + " : " + station.name.upper() + ": " + item.value, _href=URL('stations', 'charts/'+station.name))}}</li>
+            {{pass}}
+            {{else:}}
+            <li>No Values</li>
+            {{pass}}
+        </ul>
+
+        <script type="text/javascript">
+    $(function () {
+        $('#js-news').ticker({
+            titleText: 'Drought Condition Estimation for: {{=now}}, {{=year}}'
+        });
+    });
+</script>
+        <hr>
+    </div>
+    <hr>
+    <div class="row span12">
+        <div class="span4">
+            <h5>Drought Map  for {{=now}}, {{=year}}. </h5>
+            {{if len(db(db.stations).select())==0:}}
+            <a style="margin-left:-50px" href="#" onClick="window.open('{{=URL('static', 'images/stations_example.png')}}','mywindow','width=800,height=560')"><img src="{{=URL('static', 'images/stations_example.png')}}" alt=""/></a>
+            {{else:}}
+            <a style="margin-left:-50px" href="#" onClick="window.open('{{=URL('static', 'images/stations.png')}}','mywindow','width=800,height=560')"><img src="{{=URL('static', 'images/stations.png')}}" alt=""/></a>
+            {{pass}}
+        </div>
+
+        <!--<div style="margin-left:200px;">-->
+        <div>
+            <style>
+            #slideshow {
+                margin: auto;
+                position: relative;
+                min-width: 450px;
+                min-height: 250px;
+                height: 140%;
+                padding: 10px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            }
+
+            #slideshow > div {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+            }
+        </style>
+
+        <div id="slideshow" class="span7">
+            {{allItems=['1', '6','12','3']}}
+            {{for item in allItems:}}
+            <div style="text-align: center">
+                <strong> G.D.M. Sample drought charts </strong>
+                <img style="max-height: 95%" src={{=URL('static', 'samplecharts/'+item)}}>
+            </div>
+            {{pass}}
+        </div>
+    </div>
+        <script>
+            $(function() {
+
+                $("#slideshow > div:gt(0)").hide();
+
+                setInterval(function() {
+                  $('#slideshow > div:first')
+                    .fadeOut(1000)
+                    .next()
+                    .fadeIn(1000)
+                    .end()
+                    .appendTo('#slideshow');
+                },  3000);
+
+            });
+        </script>
+    </div>
+</div>
+<br><br>
+<a href= "{{=URL('stations','userAdd')}}" ><button> On line SPI Calculator</button> </a>
+<hr>
+<h4>Project Description</h4>
+<p>Greece Drought Monitor started as part of <a href="http://tzorvas.com"><b>Antonis Tzorvas</b></a> (student@<a href="http://www.icsd.aegean.gr">ICSD</a>) internship with Institute for Environmental Research and Sustainable Development (<a href="http://www.meteo.noa.gr">IERSD-NOA</a>).</p>
+
+<h4>Summary Project Objectives:</h4> <p>Creation of a dynamic web application for real monitoring of Drought impacts using <a href="http://penteli.meteo.gr/meteosearch/">Meteo.gr Meteorological network</a>.</p>
+    <p>Drought Analysis using Standardized Precipitation Index (SPI) and Reconnaissance Drought Index (RDI).</p>
+
+<h4>Project Web Framework:</h4><p>Web2py is a powerfull open source framework using Python language. More details at : <a href="http://www.web2py.com">http://www.web2py.com</a>/</p>
+<h4>Developers:</h4><p>Web Application Development: <a href="http://tzorvas.com"><b>Antonis Tzorvas</b></a>, Student, Dept. of Information and Communication Systems Engineering University of the Aegean <br style="height:50px"/> Drought Algorithms Development: <a href="http://anastasiadisst.weebly.com/"><b>Anastasiadis Stavros</b></a>, Forest Msc – Phd Candidate Dept. of Mathematics, University of the Aegean</p>
+<h4>Supervisors:</h4>
+<p><a href="http://www.icsd.aegean.gr/mmarag/">Maragkoudakis Manolis</a> , Assistant Professor, Department of Information and Communication Systems Engineering, University of the Aegean <br/>
+    <a href="http://www.actuar.aegean.gr/eng/Dep/Lekkas_D.html">Lekkas F. Demetris</a>, Associate Professor, Department of Mathematics, University of the Aegean <br style="height:50px"/></p>
+<h4>NOA coordinators:</h4>
+<p><b>Lagouvardos Kontantinos</b>, Director of Research at <a href="http://www.meteo.noa.gr">IERSD-NOA</a> <br style="height:50px"/>
+    <b>Kotroni Basiliki</b>, Director of Research at <a href="http://www.meteo.noa.gr">IERSD-NOA</a>
+<h4>Special Consultants:</h4><p>
+<a href="http://www.pechlivanidis-hydro.com/">Ilias Pechlivanidis</a>, Hydrologic Scientist, Meteorological and Hydrological Institute (SMHI)   <br style="height:50px"/></p>
+<a href="http://www.baunat.boku.ac.at/488.html?&L=1">Institute of Mountain Risk Engineering</a>, Centre of Natural Hazards and Risk Management, University of Natural Resources and Life Sciences, Vienna    <br style="height:50px"/>
