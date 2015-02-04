@@ -3,4 +3,4 @@ Greece Drought Monitor started as an internship project with Institute for Envir
 Developed with web2py.
 
 Credits:
-* Stavros Anastasiadis
+* [Stavros Anastasiadis] (https://github.com/kickapoo)
